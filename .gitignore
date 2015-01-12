@@ -1,0 +1,10 @@
+#TeX outputs:
+*.aux
+*.log
+*.pdf
+
+#Emacs tmp files:
+*~
+
+# Matlab tmp files:
+*.asv
