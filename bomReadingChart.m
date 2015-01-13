@@ -41,7 +41,7 @@ breakpts = {[16];   %1NE
             [];     %Omn
             [];     %WoM
             [17];     %Mos
-            [15 30];     %Alm
+            [15 30 45 60];     %Alm
             [];     %Hel
             [16];     %3NE
             [];     %4NE
@@ -250,6 +250,8 @@ for iter = 1:length(vers2{book})%chaplim
         chaplatex = [chaplatex booknode endpic];
         if chaplim ~= length(vers2{book})
             chaplatex = [chaplatex '\\clearpage\n' begpic];
+            % This \clreapage actually breaks the ability to 
+            % Compile each book on it's own as a standalone file...
         end
         defineNewTopNode = true;
         lastchap = [];
