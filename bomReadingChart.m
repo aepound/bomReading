@@ -77,6 +77,9 @@ vers = {[20 24 31 38 22  6 22 38  6 22 36 23 42 30 36 39 55 25 24 22 ...
 fid = fopen('./bom.txt','rt');
 chars = fscanf(fid,'%s');
 fclose(fid);
+fid = fopen('./bom.txt','rt');
+fulltxt= fscanf(fid,'%c');
+fclose(fid);
 %%
 
 chps = strfind(chars,'Chapter');
@@ -100,6 +103,8 @@ for iter = 2:length(chps)
     vs(iter-1) = str2num(c{1}(1:floor(end/2)));
 end
 
+ex2 = '(([\d|\w]*[a-z]+)<book>)';%\w+(\d+<chap>):(\d+<verse>)';
+
 %% Check the ones I've done by hand:
 cumchap = [0 cumsum(chaps)];
 
@@ -117,8 +122,8 @@ end
 
 %% So it seems good...
 
-
-
+if exist('NoLaTexOutput','var') && ~NoLatexOutput
+disp('LaTeX output processing...')
 %%
 % Now, Let's get to writing the actual Tikz code...
 
@@ -338,7 +343,7 @@ system('pdflatex -interaction nonstopmode ./bom.tex > trash');
 %system('pdflatex -interaction nonstopmode ./bom.tex > trash');
 delete('trash');
 
-
+end
 
 
 
